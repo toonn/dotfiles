@@ -4,3 +4,6 @@
 [submodule "opt/nixGL"]
 	path = opt/nixGL
 	url = github:guibou/nixGL
+[submodule "opt/fast-tags"]
+	path = opt/fast-tags
+	url = github:elaforge/fast-tags

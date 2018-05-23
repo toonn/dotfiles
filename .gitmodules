@@ -1,0 +1,6 @@
+[submodule "opt/capture"]
+	path = opt/capture
+	url = github:alexherbo2/capture
+[submodule "opt/nixGL"]
+	path = opt/nixGL
+	url = github:guibou/nixGL

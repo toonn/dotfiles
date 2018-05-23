@@ -1,0 +1,156 @@
+" Download and Install vim-plug if it's missing
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" vim-plug section ------------------------------------------------------------
+call plug#begin('~/.vim/plugged')
+
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/neocomplete.vim'
+
+" Instead of Syntastic
+Plug 'neomake/neomake'
+
+Plug 'ConradIrwin/vim-bracketed-paste'
+
+Plug 'tpope/vim-commentary'
+
+Plug 'junegunn/vim-easy-align'
+
+Plug 'michaeljsmith/vim-indent-object'
+
+Plug 'SirVer/ultisnips'
+
+" Haskell
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+" Install ghc-mod first: stack install ghc-mod
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+" hlint-refactor-vim requires both hlint and apply-refact
+Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
+Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+
+
+" Colorscheme
+Plug 'vim-scripts/Wombat'
+
+call plug#end()
+" -----------------------------------------------------------------------------
+
+set encoding=utf8
+
+colorscheme wombat
+
+"
+" Neocomplete configuration
+"
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" Don't abbreviate fuzzy match (Data.~)
+call neocomplete#custom#source('_', 'converters',
+  \ ['converter_remove_overlap', 'converter_remove_last_paren',
+  \  'converter_abbr'])
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+"
+" EasyAlign configuration (vim-easy-align)
+"
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"
+" Vim configuration
+"
+
+" Obliterate retarded mouse behavior
+set mouse=
+
+set wildmenu
+set wildmode=list:longest,full
+
+set ignorecase
+set smartcase
+
+set hidden
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" No annoying sound on errors
+set noerrorbells
+set vb t_vb=
+
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
+
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f', '')<CR>
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
+
+" Tabs
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+set textwidth=79
+
+" Leader
+let mapleader = ','
+
+" Location list mapping
+nnoremap <leader>lq :lclose<CR>
+nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>lp :lprevious<CR>
+
+" Quickfix list mapping
+nnoremap <leader>qq :cclose<CR>
+nnoremap <leader>qn :cnext<CR>
+nnoremap <leader>qp :cprevious<CR>

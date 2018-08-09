@@ -7,3 +7,6 @@
 [submodule "opt/fast-tags"]
 	path = opt/fast-tags
 	url = github:elaforge/fast-tags
+[submodule "fish/transfer-gist"]
+	path = fish/transfer-gist
+	url = gist:a511f172d3fb3cd0e42d

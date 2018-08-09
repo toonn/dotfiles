@@ -27,12 +27,15 @@ Plug 'SirVer/ultisnips'
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 " Install ghc-mod first: stack install ghc-mod
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+" ghc-mod lags too much on GHC Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 " hlint-refactor-vim requires both hlint and apply-refact
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+"Plug 'meck/vim-brittany', { 'for': 'haskell' }
+"Plug 'sbdchd/neoformat', { 'for': 'haskell' }
+"Plug 'w0rp/ale', { 'for': 'haskell' }
 
 
 " Colorscheme
@@ -111,8 +114,9 @@ set mouse=
 set wildmenu
 set wildmode=list:longest,full
 
-set ignorecase
-set smartcase
+"set ignorecase
+"set smartcase
+nnoremap / /\c
 
 set hidden
 
@@ -149,8 +153,10 @@ let mapleader = ','
 nnoremap <leader>lq :lclose<CR>
 nnoremap <leader>ln :lnext<CR>
 nnoremap <leader>lp :lprevious<CR>
+nnoremap <leader>ll :ll<CR>
 
 " Quickfix list mapping
-nnoremap <leader>qq :cclose<CR>
+nnoremap <leader>qc :cclose<CR>
 nnoremap <leader>qn :cnext<CR>
 nnoremap <leader>qp :cprevious<CR>
+nnoremap <leader>qq :cc<CR>

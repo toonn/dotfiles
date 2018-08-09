@@ -1,0 +1,1 @@
+/home/toonn/.tmux/writing.tmux

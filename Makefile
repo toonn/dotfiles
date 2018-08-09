@@ -6,7 +6,7 @@ default:
 	# Possible targets: all, bin, mpv, opt, tmux, vim.
 
 .PHONY: all
-all: bin mpv opt tmux vim
+all: bin mpv opt tmux vim fish
 
 .PHONY: bin
 bin: opt tmux
@@ -27,4 +27,8 @@ tmux:
 .PHONY: vim
 vim:
 	ln -s $(HOME)/src/dotfiles/vim  $(HOME)/.vim 
+
+.PHONY: fish
+fish:
+	ln -s $(HOME)/src/dotfiles/fish/functions  $(HOME)/.config/fish
 

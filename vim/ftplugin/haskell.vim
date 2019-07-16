@@ -41,25 +41,25 @@ augroup whitespace
     augroup END
 let g:brittany_on_save = 0
 
-"" Completion, Syntax check, Lint & Refactor
-"map <silent> <leader><CR> :noh<CR>:GhcModTypeClear<CR>
-"" Disable hlint-refactor-vim's default keybindings
-"let g:hlintRefactor#disableDefaultKeybindings = 1
-"" hlint-refactor-vim keybindings
-"map <silent> <leader>hr :call ApplyOneSuggestion()<CR>
-"map <silent> <leader>hR :call ApplyAllSuggestions()<CR>
-"" Resolve ghcmod base directory
-"let g:ghcmod_use_basedir = getcwd()
-"" Type of expression under cursor
-"nmap <silent> <leader>ht :GhcModType<CR>
-"" Insert type of expression under cursor
-"nmap <silent> <leader>hT :GhcModTypeInsert<CR>
-"" GHC errors and warnings
-"nmap <silent> <leader>hc :Neomake ghcmod<CR>
+" Completion, Syntax check, Lint & Refactor
+"NOGHCMOD map <silent> <leader><CR> :noh<CR>:GhcModTypeClear<CR>
+" Disable hlint-refactor-vim's default keybindings
+let g:hlintRefactor#disableDefaultKeybindings = 1
+" hlint-refactor-vim keybindings
+map <silent> <leader>hr :call ApplyOneSuggestion()<CR>
+map <silent> <leader>hR :call ApplyAllSuggestions()<CR>
+" Resolve ghcmod base directory
+"NOGHCMOD let g:ghcmod_use_basedir = getcwd()
+" Type of expression under cursor
+"NOGHCMOD nmap <silent> <leader>ht :GhcModType<CR>
+" Insert type of expression under cursor
+"NOGHCMOD nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+" GHC errors and warnings
+"NOGHCMOD nmap <silent> <leader>hc :Neomake ghcmod<CR>
 " Haskell Lint
 nmap <silent> <leader>hl :Neomake hlint<CR>
 " Options for Haskell Syntax Check
-"let g:neomake_haskell_ghc_mod_args = '-g-Wall'
+"NOGHCMOD let g:neomake_haskell_ghc_mod_args = '-g-Wall'
 " open the neomake error window automatically when an error is found
 let g:neomake_open_list = 2
 " Fix path issues from
@@ -100,7 +100,6 @@ augroup end
 if has('python')
   py import sys, os, vim
   py sys.path.insert(0, os.path.join(os.environ['HOME'], '.vim', 'py'))
-
   py import qualified_tag
   nnoremap <buffer> <silent> <c-]> :py qualified_tag.tag_word(vim)<CR>
 endif

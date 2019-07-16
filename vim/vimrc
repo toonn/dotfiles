@@ -22,7 +22,7 @@ Plug 'junegunn/vim-easy-align'
 
 Plug 'michaeljsmith/vim-indent-object'
 
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }

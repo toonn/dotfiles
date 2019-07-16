@@ -1,1 +1,1 @@
-/home/toonn/opt/fast-tags/qualified_tag.py
+../../opt/fast-tags/qualified_tag.py

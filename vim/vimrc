@@ -22,7 +22,9 @@ Plug 'junegunn/vim-easy-align'
 
 Plug 'michaeljsmith/vim-indent-object'
 
-"Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
+
+Plug 'direnv/direnv.vim'
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
@@ -34,6 +36,7 @@ Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 "Plug 'meck/vim-brittany', { 'for': 'haskell' }
+" ormolu
 "Plug 'sbdchd/neoformat', { 'for': 'haskell' }
 "Plug 'w0rp/ale', { 'for': 'haskell' }
 
@@ -160,3 +163,6 @@ nnoremap <leader>qc :cclose<CR>
 nnoremap <leader>qn :cnext<CR>
 nnoremap <leader>qp :cprevious<CR>
 nnoremap <leader>qq :cc<CR>
+
+" Backspace behavior, backspace over eol, autoindent and start-of-insert
+set backspace=eol,indent,start

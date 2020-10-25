@@ -90,8 +90,8 @@ vnoremap <silent> <leader>h> :call Pointful()<CR>
 " Automatic tagfile updates for fast-tags
 " https://github.com/elaforge/fast-tags/blob/master/vimrc
 augroup tags
-au BufWritePost *.hs    silent !init-tags %
-au BufWritePost *.hsc   silent !init-tags %
+au BufWritePost *.hs    silent !~/opt/fast-tags/tools/init-tags %
+au BufWritePost *.hsc   silent !~/opt/fast-tags/tools/init-tags %
 augroup end
 
 " fast-tags

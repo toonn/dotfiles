@@ -10,30 +10,32 @@ do
   fi
 done
 FILES=''
-for FILE in "$PROJECT.cabal" stack.yaml
+for FILE in "$PROJECT.cabal" cabal.project* *.nix stack.yaml
 do 
   if [ -f "$SRC/$PROJECT/$FILE" ]; then
     FILES="$FILES $FILE"
   fi
 done
 SESSION="$PROJECT"
+W=$(stty size | cut -d" " -f2)
+H=$(stty size | cut -d" " -f1)
 if ! tmux -L default attach-session -t ${SESSION}; then
   cd "$SRC/$SESSION"
-  tmux new-session -d -s ${SESSION} load-env-ghc fish
-  tmux set-option -t ${SESSION} default-command 'load-env-ghc fish'
-  #tmux new-window -n vim "vim src/* lib/*" # Doesn't leave a shell after quit
-  tmux rename-window proj
-  tmux send-keys -t "$SESSION:proj" \
+  tmux new-session -d -s ${SESSION} -x $W -y $H
+  tmux rename-window lorri
+  tmux send-keys -t "$SESSION:lorri" \
     "echo ------------------------- $(date) -------------------------" \
     "> $HOOGLELOG" C-m \
     "hoogle server --local -p 8008 > $HOOGLELOG 2>&1 &" C-m \
-    "exec vim $FILES" C-m
-  #tmux send-keys -t "$SESSION:proj" "vim $FILES" C-m
+    "lorri daemon" C-m
+  tmux new-window -n proj
+  tmux send-keys -t "$SESSION:proj" "exec vim $FILES" C-m
   tmux new-window -n src
-  tmux send-keys -t "$SESSION:src" "exec vim $DIRS" C-m
+  tmux split-window -t "$SESSION:src" -v -b -l 20
+  tmux send-keys -t "$SESSION:src.0" "ghcid" C-m
+  tmux select-pane -t "$SESSION:src.1"
+  tmux send-keys -t "$SESSION:src.1" "exec vim $DIRS" C-m
   tmux new-window -n git
   tmux send-keys -t "$SESSION:git" 'git lg -5' C-m 'git st' C-m
-  #tmux rename-window 'ranger'
-  #tmux last-pane
   ${0} ${@}
 fi

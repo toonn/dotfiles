@@ -24,6 +24,14 @@ then
   echo ""
   echo "  The first argument needs to be a valid block <device>, e.g. /dev/sdx."
 else
-  dd if=/dev/zero of=$1 bs=1M count=1
-  mkudffs -b 512 --media-type=hd --utf8 --lvid=$2 $1
+  case $(uname -s) in
+    Darwin)
+      sudo dd if=/dev/zero of=$1 bs=1000000 count=1
+      sudo newfs_udf -v $2 -r 2.01 -b 512 $1
+      ;;
+    Linux)
+      dd if=/dev/zero of=$1 bs=1M count=1
+      mkudffs -b 512 --media-type=hd --utf8 --lvid=$2 $1
+      ;;
+  esac
 fi

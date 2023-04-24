@@ -31,7 +31,7 @@ Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 " Install ghc-mod first: stack install ghc-mod
 " ghc-mod lags too much on GHC Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+"Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 " hlint-refactor-vim requires both hlint and apply-refact
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }

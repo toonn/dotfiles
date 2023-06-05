@@ -1,10 +1,10 @@
 { pkgs ? import ~/src/nix-config/haskell.nix/nixpkgs.nix
-, compiler-nix-name ? "ghc8102"
+, compiler-nix-name ? "ghc8107"
 }:
 (pkgs.haskell-nix.hackage-package {
   inherit compiler-nix-name;
   name = "arbtt";
-  version = "0.10.2";
-  index-state = "2020-10-26T22:14:30Z";
-  configureArgs = "--constraint 'strict <0.4'";
+  version = "0.12.0.1";
+  index-state = "2022-09-06T00:00:00Z";
+  #configureArgs = "--constraint 'strict <0.4'";
 }).components.exes

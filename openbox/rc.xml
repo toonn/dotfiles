@@ -335,6 +335,9 @@
     <mousebind button="A-Left" action="Drag">
       <action name="Move"/>
     </mousebind>
+    <mousebind button="Middle" action="Drag">
+      <action name="Move"/>
+    </mousebind>
 
     <mousebind button="A-Right" action="Press">
       <action name="Focus"/>

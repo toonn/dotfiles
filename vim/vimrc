@@ -49,7 +49,7 @@ call plug#end()
 
 set encoding=utf8
 
-colorscheme wombat
+colorscheme shine  " wombat doesn't work well with my black-on-white XTerm
 
 "
 " Neocomplete configuration

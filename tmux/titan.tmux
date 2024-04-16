@@ -1,7 +1,7 @@
 #! /bin/sh
 SESSION="titan"
 if ! tmux -L default attach-session -t ${SESSION}; then
-  tmux new-session -d -s ${SESSION} 'ranger ~/Downloads'
+  tmux new-session -d -s ${SESSION} # 'ranger ~/Downloads'
   tmux rename-window 'ranger'
   tmux new-window -t ${SESSION} '~/.irssi/scripts/notify-listener.py &; irssi'
   tmux rename-window 'irssi'

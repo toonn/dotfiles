@@ -3,8 +3,8 @@ function xv
   set -q argv[1]; or set argv (clipboard);
   printf '%s' $argv
   if string match -rq 'youtu\.?be(\.com)?' -- $argv
-    printf ' -> limit filesize <= 300M\n'
-    mpv --ytdl-format='[filesize <=? 300M]' $argv
+    printf ' -> limit resolution < 720p\n'
+    mpv --ytdl-format='[height <? 720]' $argv
   else
     printf '\n'
     mpv $argv

@@ -49,7 +49,8 @@ call plug#end()
 
 set encoding=utf8
 
-colorscheme shine  " wombat doesn't work well with my black-on-white XTerm
+" colorscheme shine  " wombat doesn't work well with my black-on-white XTerm
+colorscheme wombat
 
 "
 " Neocomplete configuration
@@ -166,3 +167,16 @@ nnoremap <leader>qq :cc<CR>
 
 " Backspace behavior, backspace over eol, autoindent and start-of-insert
 set backspace=eol,indent,start
+
+" Disable highlighting of strings inside comments
+let g:vimsyn_comment_strings = v:false
+
+" Load project-specific vimrc if $PROJECT_SPECIFIC_VIMRC path exists
+if filereadable($PROJECT_SPECIFIC_VIMRC)
+  function DelayedEcho(timer)
+    echomsg
+      \ "Sourcing project-specific vimrc: `" .. $PROJECT_SPECIFIC_VIMRC .. "'"
+  endfunction
+  call timer_start(100, 'DelayedEcho')
+  source $PROJECT_SPECIFIC_VIMRC
+endif

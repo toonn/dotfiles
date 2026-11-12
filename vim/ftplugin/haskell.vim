@@ -27,7 +27,9 @@ nnoremap <silent> <leader>hz :HoogleClose<CR>
 
 " Formatting
 " Use hindent instead of par for haskell buffers
-let &formatprg="hindent --tab-size 2 -XQuasiQuotes"
+" TODO: If hindent is not present this ends up deleting the range that is being
+"       formatted.
+" let &formatprg="hindent --tab-size 2 -XQuasiQuotes"
 " Delete trailing white space on save
 " Utility function to delete trailing white space
 func! DeleteTrailingWS()
@@ -90,8 +92,16 @@ vnoremap <silent> <leader>h> :call Pointful()<CR>
 " Automatic tagfile updates for fast-tags
 " https://github.com/elaforge/fast-tags/blob/master/vimrc
 augroup tags
-au BufWritePost *.hs    silent !~/opt/fast-tags/tools/init-tags %
-au BufWritePost *.hsc   silent !~/opt/fast-tags/tools/init-tags %
+"au BufWritePost *.hs    silent !<script>:h:h/fast-tags/init-tags %
+"au BufWritePost *.hsc   silent !<script>:h:h/fast-tags/init-tags %
+"au BufWritePost *.{hs,hsc}  call job_start([expand("<script>:h:h") .. "/fast-tags/init-tags", expand("%")])
+function EchoHandler(channel, msg)
+  echomsg a:msg
+endfunction
+au BufWritePost *.{hs,hsc}  call job_start(
+  \  [expand("<script>:h:h") .. "/fast-tags/init-tags", expand("%")]
+  \, {"callback": "EchoHandler"}
+  \)
 augroup end
 
 " fast-tags
@@ -99,7 +109,7 @@ augroup end
 " modifying iskeyword.
 if has('python')
   py import sys, os, vim
-  py sys.path.insert(0, os.path.join(os.environ['HOME'], '.vim', 'py'))
+  py sys.path.insert(0, expand(<script>:h:h/py))
   py import qualified_tag
   nnoremap <buffer> <silent> <c-]> :py qualified_tag.tag_word(vim)<CR>
 endif

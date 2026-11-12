@@ -245,6 +245,37 @@
   <keybind key="A-space">
     <action name="ShowMenu"><menu>client-menu</menu></action>
   </keybind>
+  <keybind key="W-a">
+    <action name="ToggleMaximize"/>
+  </keybind>
+  <keybind key="W-m">
+    <action name="Iconify"/>
+  </keybind>
+  <keybind key="W-v">
+    <action name="ToggleMaximize">
+      <direction>vertical</direction>
+    </action>
+  </keybind>
+  <keybind key="W-Up">
+    <action name="MoveResizeTo">
+      <y>0</y>
+    </action>
+  </keybind>
+  <keybind key="W-Down">
+    <action name="MoveResizeTo">
+      <y>-0</y>
+    </action>
+  </keybind>
+  <keybind key="W-Left">
+    <action name="MoveResizeTo">
+      <x>0</x>
+    </action>
+  </keybind>
+  <keybind key="W-Right">
+    <action name="MoveResizeTo">
+      <x>-0</x>
+    </action>
+  </keybind>
 
   <!-- Keybindings for window switching -->
   <keybind key="A-Tab">
@@ -301,7 +332,7 @@
   <!-- Keybindings for running applications -->
   <keybind key="C-W-t">
     <action name="Execute">
-      <command>xterm</command>
+      <command>alacritty</command>
     </action>
   </keybind>
   <keybind key="C-W-w">

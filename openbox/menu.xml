@@ -34,6 +34,9 @@
       </startupnotify>
     </action>
   </item>
+  <item label="Alacritty">
+    <action name="Execute"><command>alacritty</command></action>
+  </item>
   <item label="Xterm">
     <action name="Execute"><command>xterm</command></action>
   </item>

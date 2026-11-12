@@ -1,4 +1,4 @@
-function iv
+function xi
   set -q argv[1]; or set argv (clipboard);
   printf '%s' $argv
   printf '\n'

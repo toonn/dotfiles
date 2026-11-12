@@ -1,14 +1,17 @@
 function clipboard
   set -l contents
 
-  switch (uname -s)
+  # Check for OSC 52
+  # tput Ms
+
+  switch "$(uname -s)"
   case Darwin
-    set contents (pbpaste)
+    set contents "$(pbpaste)"
   case Linux
-    set contents (xclip -selection clipboard -o)
+    set contents "$(xclip -selection clipboard -o)"
   case '*'
-    printf "%s\n" "Can't access clipboard!" 1>&2
+    printf '%s\n' "Can't access clipboard!" 1>&2
   end
 
-  printf "%s\n" "$contents"
+  printf '%s' "$contents"
 end

@@ -16,13 +16,16 @@ if ! tmux -L default attach-session -t "${SESSION}" 2>/dev/null; then
   tmux split-window -l 80%
   # shellcheck disable=SC2088
   tmux send-keys -t "${SESSION}:proj" \
-    "taskell ~/T8N/T8N.md" C-m
+    "~/src/taskell/dist-newstyle/build/x86_64-linux/ghc-9.6.6/taskell-1.11.4/x/taskell/build/taskell/taskell ~/T8N/T8N.md" C-m
   tmux split-window -l 60%
   # shellcheck disable=SC2088
   tmux send-keys -t "${SESSION}:proj" \
     "vim ~/T8N/T8N.timedot" C-m
+  tmux new-window -n matrix -t "${SESSION}"
+  tmux send-keys -t "${SESSION}:matrix" \
+    "NIXPKGS_ALLOW_INSECURE=1 nix-shell -p gomuks --run gomuks"
   tmux new-window -t "${SESSION}"
-  tmux send-keys -t "${SESSION}:1" \
+  tmux send-keys -t "${SESSION}:2" \
     "git lg -10" C-m \
     "git st" C-m
   ${0} "${@}"

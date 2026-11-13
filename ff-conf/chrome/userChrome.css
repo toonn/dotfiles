@@ -1,0 +1,37 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Location bar */
+#urlbar {
+    font-size: 12px !important;
+}
+
+/* Tab bar */
+
+#TabsToolbar, #tabbrowser-tabs {
+    --tab-min-height: 15px !important;
+    --tab-block-margin: 5px;
+    --tabstrip-min-height: 25px;
+    font-size: 10px !important;
+}
+
+.titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"] {
+    width: 0px !important;
+}
+
+.tab-content {
+  padding: 2px 4px !important;
+}
+
+.titlebar-buttonbox {
+  --titlebar-button-spacing: 0;
+  --titlebar-button-size: 20px;
+}
+
+.tab-background {
+  --tab-border-radius: 3px;
+  --tab-border-margin: 3px;
+}
+
+/* about:blank background color */
+.browserContainer { background-color: darkolivegreen !important; }
+
